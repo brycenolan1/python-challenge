@@ -4,8 +4,10 @@ import csv
 # Path to collect data from the given folder/file
 bd_csv = os.path.join("budget_data.csv")
 
-# Define the function and have it accept 'budgetData' as its sole parameter
+# Define the function and have it accept 'budget_data' as its sole parameter
 # def financial_analysis(budget_data):
+
+# need to place date and average change in dictionary
 
 # open csv file:
 with open(bd_csv, newline="") as csvfile:
@@ -17,9 +19,21 @@ with open(bd_csv, newline="") as csvfile:
 
         total_months = csvreader.line_num-1
         total_revenue += int(row[1])
-        # average_change = mean(int(row[1]))
-        max_profit = max(row[1])
-        max_loss = min(row[1])
+        #average_change = mean(int(row[1]))
+        #max_profit = max(row[1])
+        max_profit=0
+        min_profit=0
+        profit=int(row[1])
+        
+        for revenue in profit:
+            if profit > max_profit:
+                max_profit=profit
+
+        for revenue in profit:
+            if profit < min_profit:
+                min_profit=profit
+
+        #min_profit = min(row[1])
         date = row[0]
 
 print("Financial Analysis")
@@ -28,7 +42,7 @@ print(f"Total Months: {total_months}")
 print(f"Total: ${total_revenue}")
 # print(f"Average Change: {average_change}")
 print(f"Greatest Increase in Profits: {date} (${max_profit})")
-print(f"Greatest Decrease in Profits: {date} (${max_loss})")
+print(f"Greatest Decrease in Profits: {date} (${min_profit})")
 
 
 # #Lists to store data
